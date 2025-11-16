@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym Hero Landing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__overlay"></div>
+      <nav class="navbar">
+        <div class="brand">
+          <img src="https://i.imgur.com/4Z7aUat.png" alt="Gym Logo" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#coaches">Coaches</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#membership">Join</a></li>
+        </ul>
+      </nav>
+      <main class="hero__content">
+        <div class="hero__text">
+          <h1>Live Your Best Life</h1>
+          <p>Here we generate the plan to build the new you.</p>
+          <button class="cta-button" type="button" data-scroll-target="#membership">
+            Get Started
+          </button>
+        </div>
+      </main>
+    </header>
+    <section class="membership" id="membership">
+      <div class="membership__inner">
+        <h2>Build Your Personalized Plan</h2>
+        <p>
+          Share a few details so we can craft a training program tailored to your goals.
+        </p>
+        <form class="membership__form">
+          <div class="form-grid">
+            <label class="field">
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Alex Johnson" required />
+            </label>
+            <label class="field">
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="+1 (555) 123-4567" />
+            </label>
+            <label class="field">
+              <span>Age</span>
+              <input type="number" name="age" placeholder="28" min="12" max="90" />
+            </label>
+            <label class="field">
+              <span>Height (cm)</span>
+              <input type="number" name="height" placeholder="178" min="100" max="240" />
+            </label>
+            <label class="field">
+              <span>Weight (kg)</span>
+              <input type="number" name="weight" placeholder="78" min="35" max="250" />
+            </label>
+            <label class="field field--select">
+              <span>Fitness Goal</span>
+              <select name="goal" required>
+                <option value="">Select your focus</option>
+                <option value="strength">Build Strength</option>
+                <option value="weight-loss">Lose Weight</option>
+                <option value="conditioning">Improve Conditioning</option>
+                <option value="flexibility">Increase Flexibility</option>
+              </select>
+            </label>
+            <label class="field field--select">
+              <span>Training Days</span>
+              <select name="frequency" required>
+                <option value="">Select frequency</option>
+                <option value="2">2 Days</option>
+                <option value="3">3 Days</option>
+                <option value="4">4 Days</option>
+                <option value="5">5 Days</option>
+                <option value="6">6 Days</option>
+                <option value="7">7 Days</option>
+              </select>
+            </label>
+          </div>
+          <label class="field field--wide">
+            <span>Preferred Training Times</span>
+            <div class="checkbox-group">
+              <label>
+                <input type="checkbox" name="times" value="morning" />Morning
+              </label>
+              <label>
+                <input type="checkbox" name="times" value="afternoon" />Afternoon
+              </label>
+              <label>
+                <input type="checkbox" name="times" value="evening" />Evening
+              </label>
+            </div>
+          </label>
+          <label class="field field--wide">
+            <span>Tell us about your experience</span>
+            <textarea
+              name="message"
+              rows="4"
+              placeholder="Share past routines, injuries, or anything else we should know."
+            ></textarea>
+          </label>
+          <button class="submit-button" type="submit">Submit Details</button>
+          <div class="form-result" hidden>
+            <h3>Submission Preview</h3>
+            <pre class="form-result__json"></pre>
+          </div>
+        </form>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+

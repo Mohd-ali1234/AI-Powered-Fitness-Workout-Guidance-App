@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym Hero - Home Plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero hero--plan">
+      <div class="hero__overlay"></div>
+      <nav class="navbar">
+        <div class="brand">
+          <img src="https://i.imgur.com/4Z7aUat.png" alt="Gym Logo" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="home.html" aria-current="page">Home</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li><a href="index.html#coaches">Coaches</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#membership">Join</a></li>
+        </ul>
+      </nav>
+      <main class="hero__content">
+        <div class="hero__text">
+          <span class="hero__eyebrow" data-plan-eyebrow>Personalized Blueprint</span>
+          <h1 data-plan-heading>Strength Plan</h1>
+          <p data-plan-summary>
+            Three focused strength sessions blended with active recovery so you can build power and stay primed all week.
+          </p>
+          <a class="cta-button" href="index.html#membership">Update Your Details</a>
+        </div>
+      </main>
+    </header>
+
+    <section class="plan" data-plan-root>
+      <div class="plan__inner">
+        <div class="plan__placeholder" data-plan-placeholder hidden>
+          <h2>No plan loaded yet</h2>
+          <p>
+            Submit your details on the Join form to generate a personalized plan. Once the response is ready, you can return to this page to explore workouts, nutrition, and coaching notes.
+          </p>
+          <a class="cta-button" href="index.html#membership">Generate My Plan</a>
+        </div>
+        <aside class="plan__summary" hidden>
+          <h2>Plan Overview</h2>
+          <p class="plan-summary__intro">
+            Tailored workouts and fueling tips for <span data-plan-name></span>.
+          </p>
+          <ul class="plan-summary__stats" data-plan-stats></ul>
+          <div class="plan-summary__goal" data-plan-goal></div>
+          <p class="plan-summary__schedule" data-plan-schedule></p>
+        </aside>
+
+        <div class="plan__main" hidden>
+          <div class="plan-tabs" data-plan-tabs></div>
+          <div class="plan-panels" data-plan-panels></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="plan-footer">
+      <div class="plan-footer__inner">
+        <h2>Need adjustments?</h2>
+        <p>Return to the assessment form to tweak your goals or schedule.</p>
+        <a class="cta-button" href="index.html#membership">Refine My Plan</a>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
