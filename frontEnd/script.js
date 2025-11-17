@@ -93,6 +93,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const safeJsonParsePlan = (rawText) => {
+    if (!rawText || typeof rawText !== 'string') return null;
+
+    let cleaned = rawText.trim();
+
+    // If Gemini wraps JSON in markdown code fences, strip them
+    const fenceMatch = cleaned.match(/```(?:json)?([\s\S]*?)```/i);
+    if (fenceMatch && fenceMatch[1]) {
+      cleaned = fenceMatch[1].trim();
+    }
+
+    // If there is explanatory text around the JSON, try to isolate the first {...} block
+    const firstBrace = cleaned.indexOf('{');
+    const lastBrace = cleaned.lastIndexOf('}');
+    if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+      cleaned = cleaned.slice(firstBrace, lastBrace + 1);
+    }
+
+    try {
+      return JSON.parse(cleaned, (key, value) =>
+        key === 'restSec' && value === '' ? null : value
+      );
+    } catch {
+      return null;
+    }
+  };
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -144,13 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (typeof data.response === 'string') {
         const planText = data.response.trim();
         if (planText) {
-          try {
-            parsedPlan = JSON.parse(planText, (key, value) =>
-              key === 'restSec' && value === '' ? null : value
-            );
-          } catch (parseError) {
-            parsedPlan = null;
-          }
+          parsedPlan = safeJsonParsePlan(planText);
         }
       } else if (data.response && typeof data.response === 'object') {
         parsedPlan = data.response;

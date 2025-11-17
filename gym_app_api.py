@@ -7,7 +7,7 @@ from typing import List, Optional
 
 app = FastAPI()
 
-API_KEY = "AIzaSyApVhLJorWGOvTO-vj6DKVYGouUk6fEchg"
+API_KEY = "AIzaSyBGHGv6jiQcMj-Z3Y6LcnMmSM_qWSJPDaA"
 client = genai.Client(api_key=API_KEY)
 
 
