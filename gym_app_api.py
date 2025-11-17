@@ -7,7 +7,7 @@ from typing import List, Optional
 
 app = FastAPI()
 
-API_KEY = "AIzaSyBGHGv6jiQcMj-Z3Y6LcnMmSM_qWSJPDaA"
+API_KEY = "Write your Api key here"
 client = genai.Client(api_key=API_KEY)
 
 
@@ -113,3 +113,4 @@ Make sure to produce **valid JSON only**, without any markdown or extra text.
 @app.get("/")
 async def root():
     return {"message": "Gym App API is running"}
+
