@@ -1,25 +1,89 @@
-Fitness Guidance Web App (AI-Powered)
+AI-Powered Fitness Guidance Web App 🏋️🤖
 
-This is a simple and responsive fitness guidance web app built using HTML, CSS, JavaScript, and FastAPI. The app uses the Gemini API to generate personalized workout and diet suggestions based on user inputs. It is designed to be lightweight, easy to use, and extendable for future AI chatbot integration.
+A lightweight, responsive, and intelligent fitness guidance web application built using HTML, CSS, JavaScript, and FastAPI.
+This app provides personalized workout and diet plans using the Gemini API — and now includes an AI chatbot with RAG to answer follow-up questions about the workout plan.
+All user data and fitness plans are securely stored in MongoDB.
 
 🚀 Features
+🔹 Interactive AI Chatbot (New!)
 
-Responsive UI built with HTML, CSS, JS
+Ask questions about the generated workout or diet plan
 
-AI-based fitness suggestions (workout + diet) using Gemini API
+Provides deeper explanations and clarifications
 
-FastAPI backend to handle AI requests
+Powered by RAG, using stored fitness data to improve accuracy
 
-User inputs like fitness goals and experience level
+🔹 AI-Generated Fitness Plans
 
-Real-time response display in the frontend
+Personalized workout + diet suggestions
 
-Clean code structure for easy expansion
+Based on user inputs like:
 
-Future-ready for full chatbot mode
+Fitness goals
+
+Experience level
+
+Time availability
+
+🔹 FastAPI Backend
+
+Handles AI interactions
+
+Connects to MongoDB
+
+Provides API endpoints for chat, plan generation, and history
+
+🔹 MongoDB Integration (New!)
+
+Stores:
+
+User inputs
+
+Generated fitness plans
+
+Chat history for RAG
+
+Enables plan tracking and more accurate chatbot responses
+
+🔹 Clean & Responsive Frontend
+
+Modern UI using HTML, CSS, JavaScript
+
+Real-time response rendering
+
+Fully mobile-friendly
+
+🔹 Future-Ready
+
+Built to easily expand into:
+
+Full conversational fitness chatbot
+
+AI-based weekly workout scheduler
+
+Progress tracking
+
+Voice input/output
 
 🛠️ Tech Stack
+Frontend
 
-Frontend: HTML, CSS, JavaScript
-Backend: FastAPI (Python)
-AI Model: Gemini API
+HTML
+
+CSS
+
+JavaScript
+
+Backend
+
+FastAPI (Python)
+
+MongoDB
+
+AI
+
+Gemini API
+
+Retrieval-Augmented Generation (RAG)
+
+Stores embeddings from fitness plans to enhance chatbot answers
