@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PulseChat AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #ff2c55;
+        --white: #ffffff;
+        --text-light: rgba(255, 255, 255, 0.75);
+        --bg-dark: #080808;
+        --bg-overlay: rgba(0, 0, 0, 0.75);
+        --transition: 200ms ease-in-out;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--white);
+        min-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        padding: 2.5rem clamp(1.5rem, 5vw, 5rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.45)
+          ),
+          url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80')
+            center/cover no-repeat;
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: clamp(18rem, 35vw, 28rem);
+        height: 100%;
+        background: linear-gradient(135deg, rgba(8, 8, 8, 0.9), rgba(8, 8, 8, 0.6));
+        clip-path: polygon(35% 0%, 100% 0%, 100% 100%, 0% 100%);
+        z-index: 1;
+      }
+
+      .hero__overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 15% 20%, rgba(0, 0, 0, 0.6), transparent),
+          radial-gradient(circle at 80% 75%, rgba(0, 0, 0, 0.65), transparent);
+        z-index: 0;
+      }
+
+      .navbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+      .brand {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 2px solid var(--primary);
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 25px rgba(255, 44, 85, 0.35);
+      }
+
+      .nav-links {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  font-weight: 500;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: var(--text-light);
+}
+
+.nav-links a {
+  position: relative;
+  transition: color var(--transition);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition);
+}
+
+.nav-links a {
+  position: relative;
+  color: var(--text-light); /* your intended link color */
+  text-decoration: none;    /* remove underline */
+  transition: color var(--transition);
+}
+
+
+.nav-links a:hover {
+  color: var(--white);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+      .hero__content {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        gap: clamp(2rem, 5vw, 3rem);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: center;
+        padding-block: clamp(2rem, 15vh, 7rem);
+      }
+
+      .hero__text h1 {
+        font-size: clamp(2.4rem, 6vw, 4.5rem);
+        line-height: 1.05;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        margin-bottom: 1rem;
+      }
+
+      .hero__text p {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: var(--text-light);
+        max-width: 26ch;
+      }
+
+      .chat-panel {
+        position: relative;
+        background: rgba(8, 8, 8, 0.75);
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 1.75rem;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(14px);
+        min-height: 480px;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .chat-panel__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .chat-panel__status {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .chat-panel__status::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--primary);
+        box-shadow: 0 0 12px rgba(255, 44, 85, 0.8);
+      }
+
+      .chat-panel__status[data-state='offline']::before {
+        background: #ff5f6d;
+        box-shadow: 0 0 12px rgba(255, 95, 109, 0.8);
+      }
+
+      .chat-panel__status[data-state='loading']::before {
+        background: #ffc371;
+        box-shadow: 0 0 12px rgba(255, 195, 113, 0.8);
+      }
+
+      .chat-feed {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-right: 0.4rem;
+      }
+
+      .chat-feed::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .chat-feed::-webkit-scrollbar-thumb {
+        background: linear-gradient(var(--primary), #ffc371);
+        border-radius: 999px;
+      }
+
+      .message {
+        max-width: 80%;
+        padding: 0.85rem 1rem;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        line-height: 1.5;
+        font-size: 0.95rem;
+        background: rgba(255, 255, 255, 0.04);
+        transform-origin: bottom;
+        animation: pop 0.3s ease forwards;
+        opacity: 0;
+      }
+
+      .message--ai {
+        align-self: flex-start;
+        border-top-left-radius: 4px;
+        box-shadow: inset 0 0 0 1px rgba(255, 44, 85, 0.2);
+      }
+
+      .message--user {
+        align-self: flex-end;
+        border-top-right-radius: 4px;
+        background: rgba(255, 95, 109, 0.12);
+        box-shadow: inset 0 0 0 1px rgba(255, 95, 109, 0.2);
+      }
+
+      .message--system {
+        align-self: center;
+        background: rgba(255, 255, 255, 0.08);
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .message[data-status='pending'] {
+        opacity: 0.65;
+      }
+
+      .message[data-status='error'] {
+        border-color: rgba(255, 95, 109, 0.6);
+        color: #ff9da8;
+      }
+
+      .composer {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        padding: 0.65rem 0.75rem 0.65rem 1rem;
+      }
+
+      .composer input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        color: var(--white);
+        font-size: 1rem;
+        font-family: inherit;
+        outline: none;
+      }
+
+      .composer button {
+        border: none;
+        border-radius: 16px;
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        font-size: 1.25rem;
+        cursor: pointer;
+        background: linear-gradient(90deg, #ff5f6d, #ffc371);
+        color: var(--bg-dark);
+        transition: transform var(--transition), box-shadow var(--transition);
+      }
+
+      .composer button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 26px rgba(255, 95, 109, 0.4);
+      }
+
+      .composer input:disabled {
+        opacity: 0.7;
+      }
+
+      .composer button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      @keyframes pop {
+        from {
+          transform: translateY(16px) scale(0.96);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          color: red;
+        }
+
+        .hero {
+          padding: 2rem 1.5rem;
+        }
+
+        .hero::after {
+          width: 22rem;
+          clip-path: polygon(45% 0%, 100% 0%, 100% 100%, 15% 100%);
+        }
+
+        .hero__content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 540px) {
+        .hero::after {
+          display: none;
+        }
+
+        .chat-panel {
+          min-height: 420px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero" id="home">
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <nav class="navbar">
+        <div></div>
+        <ul class="nav-links">
+          <li><a href="C:\Users\HP\Desktop\AI-Powered-Fitness-Workout-Guidance-App-main\frontEnd\index.html" aria-current="page">Home</a></li>
+          <li><a href="C:\Users\HP\Desktop\AI-Powered-Fitness-Workout-Guidance-App-main\frontEnd\home.html">My Plan</a></li>
+          <!-- <li><a href="#updates">Updates</a></li> -->
+        </ul>
+      </nav>
+      <div class="hero__content">
+        <div class="hero__text">
+          <h1>PulseChat AI</h1>
+          <p>Drop a message and your coach fires back with hype, cues, and recovery intel.</p>
+        </div>
+        <section class="chat-panel" aria-label="Chat conversation">
+          <div class="chat-panel__header">
+            <h2 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.25em;">
+              Live feed
+            </h2>
+            <span class="chat-panel__status" data-state="online">online</span>
+          </div>
+          <div class="chat-feed" id="chatFeed" aria-live="polite"></div>
+          <form class="composer" id="chatForm">
+            <input
+              id="chatInput"
+              type="text"
+              placeholder="Type your message..."
+              autocomplete="off"
+              aria-label="Message PulseChat"
+              required
+            />
+            <button type="submit" aria-label="Send message">➤</button>
+          </form>
+        </section>
+      </div>
+    </header>
+
+    <script>
+      const API_BASE_URL = 'http://127.0.0.1:8000';
+      const chatFeed = document.getElementById('chatFeed');
+      const chatForm = document.getElementById('chatForm');
+      const chatInput = document.getElementById('chatInput');
+      const statusBadge = document.querySelector('.chat-panel__status');
+      const sendButton = chatForm.querySelector('button[type="submit"]');
+
+      window.addEventListener('DOMContentLoaded', loadChatHistory);
+
+      chatForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        chatInput.value = '';
+        const pendingBubble = appendMessage(text, 'user', { status: 'pending' });
+        toggleComposer(true);
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/api/chats`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sender: 'user', message: text })
+          });
+
+          if (!response.ok) throw new Error('Failed to deliver message');
+
+          const payload = await response.json();
+          markMessageSent(pendingBubble);
+          setStatus('online', 'online');
+
+          if (payload.reply) {
+            appendMessage(payload.reply.message, 'ai');
+          }
+        } catch (error) {
+          console.error(error);
+          markMessageError(pendingBubble);
+          appendSystemMessage('Message not delivered. Check your connection and try again.');
+          setStatus('offline', 'offline');
+        } finally {
+          toggleComposer(false);
+        }
+      });
+
+      async function loadChatHistory() {
+        setStatus('syncing', 'loading');
+        try {
+          const response = await fetch(`${API_BASE_URL}/api/chats`);
+          if (!response.ok) throw new Error('Failed to load history');
+
+          const chats = await response.json();
+          chatFeed.innerHTML = '';
+
+          if (!chats.length) {
+            appendSystemMessage('No chats yet. Start the conversation!');
+          } else {
+            chats.forEach((entry) => appendMessage(entry.message, entry.sender));
+          }
+
+          setStatus('online', 'online');
+        } catch (error) {
+          console.error(error);
+          appendSystemMessage('Unable to reach the coach service.');
+          setStatus('offline', 'offline');
+        }
+      }
+
+      function appendMessage(content, type, options = {}) {
+        const bubble = document.createElement('div');
+        bubble.className = `message message--${type}`;
+        bubble.textContent = content;
+
+        if (options.status) {
+          bubble.dataset.status = options.status;
+        }
+
+        chatFeed.appendChild(bubble);
+        chatFeed.scrollTo({ top: chatFeed.scrollHeight, behavior: 'smooth' });
+        return bubble;
+      }
+
+      function appendSystemMessage(content) {
+        return appendMessage(content, 'system');
+      }
+
+      function markMessageSent(bubble) {
+        if (!bubble) return;
+        bubble.dataset.status = 'sent';
+      }
+
+      function markMessageError(bubble) {
+        if (!bubble) return;
+        bubble.dataset.status = 'error';
+      }
+
+      function toggleComposer(isSending) {
+        chatInput.disabled = isSending;
+        sendButton.disabled = isSending;
+      }
+
+      function setStatus(label, state) {
+        statusBadge.textContent = label;
+        statusBadge.dataset.state = state;
+      }
+    </script>
+  </body>
+</html>
+
