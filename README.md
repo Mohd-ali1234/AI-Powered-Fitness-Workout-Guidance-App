@@ -1,23 +1,12 @@
-AI-Powered Fitness Guidance Web App 🏋️🤖
+🌟 AI-Powered Fitness Guidance Web App
 
-A lightweight, responsive, and intelligent fitness guidance web application built using HTML, CSS, JavaScript, and FastAPI.
-This app provides personalized workout and diet plans using the Gemini API — and now includes an AI chatbot with RAG to answer follow-up questions about the workout plan.
-All user data and fitness plans are securely stored in MongoDB.
+A modern, responsive, and intelligent fitness guidance platform built with FastAPI, MongoDB, and a clean HTML/CSS/JavaScript frontend.
+The app generates personalized workout and diet plans using the Gemini API and includes an AI chatbot with RAG for detailed Q&A and plan clarification.
 
-🚀 Features
-🔹 Interactive AI Chatbot (New!)
+🚀 Key Features
+🧠 AI-Generated Workout & Diet Plans
 
-Ask questions about the generated workout or diet plan
-
-Provides deeper explanations and clarifications
-
-Powered by RAG, using stored fitness data to improve accuracy
-
-🔹 AI-Generated Fitness Plans
-
-Personalized workout + diet suggestions
-
-Based on user inputs like:
+Creates personalized fitness recommendations based on:
 
 Fitness goals
 
@@ -25,15 +14,25 @@ Experience level
 
 Time availability
 
-🔹 FastAPI Backend
+🤖 Smart Chatbot with RAG (New)
 
-Handles AI interactions
+Users can ask follow-up questions about their fitness plan
 
-Connects to MongoDB
+RAG improves responses using stored data and embeddings
 
-Provides API endpoints for chat, plan generation, and history
+Provides clearer, more contextual explanations
 
-🔹 MongoDB Integration (New!)
+⚡ FastAPI Backend
+
+Handles AI generation
+
+Manages chatbot queries
+
+Clean and modular endpoints
+
+Easy to scale and extend
+
+🗄️ MongoDB Integration (New)
 
 Stores:
 
@@ -41,49 +40,33 @@ User inputs
 
 Generated fitness plans
 
-Chat history for RAG
+Chat history
 
-Enables plan tracking and more accurate chatbot responses
+Vector embeddings for RAG
 
-🔹 Clean & Responsive Frontend
+Improves chatbot accuracy and allows future analytics.
 
-Modern UI using HTML, CSS, JavaScript
+💻 Responsive Frontend
 
-Real-time response rendering
+Built using HTML, CSS, and JavaScript
 
-Fully mobile-friendly
+Simple, fast, and mobile-friendly
 
-🔹 Future-Ready
-
-Built to easily expand into:
-
-Full conversational fitness chatbot
-
-AI-based weekly workout scheduler
-
-Progress tracking
-
-Voice input/output
+Real-time display of AI responses
 
 🛠️ Tech Stack
-Frontend
 
-HTML
+Frontend: HTML, CSS, JavaScript
+Backend: FastAPI (Python)
+Database: MongoDB
+AI: Gemini API + RAG (Embeddings + Retrieval)
 
-CSS
+✨ Highlights
 
-JavaScript
+Lightweight and fast
 
-Backend
+Clean folder structure
 
-FastAPI (Python)
+Extendable for full AI fitness assistant
 
-MongoDB
-
-AI
-
-Gemini API
-
-Retrieval-Augmented Generation (RAG)
-
-Stores embeddings from fitness plans to enhance chatbot answers
+Beginner-friendly and production-ready foundation
