@@ -15,7 +15,7 @@ from mongoDb import plans_collection, client, get_latest_plan_text_content # Ass
 
 app = FastAPI()
 
-API_KEY = "AIzaSyAanhZwTC8SuGpUKH9DKMis-C8NiWYTwUc"
+API_KEY = "API_KEY_HERE"
 client = genai.Client(api_key=API_KEY)
 
 class PromptRequest(BaseModel):
@@ -208,4 +208,5 @@ Make sure to produce **valid JSON only**, without any markdown or extra text.
 @app.get("/")
 async def root():
     return {"message": "Gym App API is running"}
+
 
