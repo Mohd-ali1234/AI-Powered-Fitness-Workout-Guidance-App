@@ -6,8 +6,8 @@ from typing import Optional
 import json  # ⬅️ **ADD THIS IMPORT**s
 
 # --- Configuration ---
-DB_USERNAME = "mohd16"
-DB_PASSWORD = "mohd1234" 
+DB_USERNAME = "DB_Username"
+DB_PASSWORD = "DB_Password" 
 DB_NAME = "gymDatabase"
 COLLECTION_NAME = "fitness_plans"
 
@@ -65,4 +65,5 @@ def get_latest_plan_text_content() -> Optional[str]:
             
     except Exception as e:
         print(f"An error occurred while fetching the latest plan: {e}")
+
         return None
