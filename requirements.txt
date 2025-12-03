@@ -4,3 +4,9 @@ requests>=2.31.0
 pydantic>=2.5.0
 google-genai>=0.2.0
 
+sentence-transformers>=2.2.2
+numpy>=1.26.0
+scikit-learn>=1.4.0
+PyPDF2>=3.0.0
+
+python-dotenv>=1.0.1   # only if you're using .env
